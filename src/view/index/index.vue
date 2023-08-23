@@ -108,7 +108,6 @@
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -133,8 +132,8 @@ export default {
     }
   },
   methods: {
-    handleChange(val) {
-      console.log(val);
+    handleChange (val) {
+      // console.log(val);
     }
   }
 }

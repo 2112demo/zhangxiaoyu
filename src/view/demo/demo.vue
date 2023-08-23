@@ -14,7 +14,7 @@
         <div class="o-one o-active">
           <p>01</p>
           <div>
-            <p>项目信息</p>            
+            <p>项目信息</p>
             <p>项目名称、类型、预算等</p>
           </div>
         </div>
@@ -22,7 +22,7 @@
         <div class="o-one">
           <p>01</p>
           <div>
-            <p>项目信息</p>            
+            <p>项目信息</p>
             <p>项目名称、类型、预算等</p>
           </div>
         </div>
@@ -30,63 +30,91 @@
         <div class="o-one">
           <p>01</p>
           <div>
-            <p>项目信息</p>            
+            <p>项目信息</p>
             <p>项目名称、类型、预算等</p>
           </div>
         </div>
       </div>
-      <!-- <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item label="活动名称">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="活动区域">
-          <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="活动时间">
-          <el-col :span="11">
-            <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-          </el-col>
-          <el-col class="line" :span="2">-</el-col>
-          <el-col :span="11">
-            <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
-          </el-col>
-        </el-form-item>
-        <el-form-item label="即时配送">
-          <el-switch v-model="form.delivery"></el-switch>
-        </el-form-item>
-        <el-form-item label="活动性质">
-          <el-checkbox-group v-model="form.type">
-            <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-            <el-checkbox label="地推活动" name="type"></el-checkbox>
-            <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-            <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-          </el-checkbox-group>
-        </el-form-item>
-        <el-form-item label="特殊资源">
-          <el-radio-group v-model="form.resource">
-            <el-radio label="线上品牌商赞助"></el-radio>
-            <el-radio label="线下场地免费"></el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="活动形式">
-          <el-input type="textarea" v-model="form.desc"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="onSubmit">立即创建</el-button>
-          <el-button>取消</el-button>
-        </el-form-item>
-      </el-form> -->
-      <form action="">
-        <div>
-          <p>任务类型</p>
-          <input type="text">
+      <div class="from-cont">
+        <div class="b-one" v-show="plan==1">
+          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="任务类型" prop="region">
+              <el-select v-model="ruleForm.region" placeholder="请选择任务类型">
+                <el-option label="快递服务" value="kuaidi"></el-option>
+                <el-option label="餐饮服务" value="canyin"></el-option>
+                <el-option label="物流服务" value="wuliu"></el-option>
+                <el-option label="互联网科技" value="hulianwang"></el-option>
+                <el-option label="管理咨询" value="guanli"></el-option>
+                <el-option label="餐饮服务" value="canyin"></el-option>
+                <el-option label="贸易服务" value="maoyi"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="省份" prop="province">
+              <template>
+                <el-select v-model="ruleForm.province" placeholder="请选择省份">
+                  <el-option
+                    v-for="item in cities"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    <span style="float: left">{{ item.label }}</span>
+                    <!-- <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span> -->
+                  </el-option>
+                </el-select>
+              </template>
+            </el-form-item>
+            <el-form-item label="城市" prop="city">
+              <el-select v-model="ruleForm.city" placeholder="请选择城市">
+                <el-option label="南阳" value="nanyang"></el-option>
+                <el-option label="保定" value="baoding"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="项目时间" required prop="time">
+              <div class="block">
+                <el-date-picker
+                  v-model="ruleForm.time"
+                  type="daterange"
+                  align="right"
+                  unlink-panels
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  :picker-options="pickerOptions">
+                </el-date-picker>
+              </div>
+            </el-form-item>
+            <el-form-item label="项目名称" prop="name">
+              <el-input v-model="ruleForm.name" placeholder="请输入项目名称"></el-input>
+            </el-form-item>
+            <el-form-item label="任务描述" prop="describe">
+              <el-input type="textarea" v-model="ruleForm.describe" class="textArea"></el-input>
+            </el-form-item>
+            <el-form-item label="详细地址" prop="site">
+              <el-input v-model="ruleForm.site"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="submitForm('ruleForm')" class="nextBtn">下一步->人员导入</el-button>
+              <!-- <el-button @click="resetForm('ruleForm')">重置</el-button> -->
+            </el-form-item>
+          </el-form>
         </div>
-      </form>
+        <div class="b-two" v-show="plan==2">
+          <div style="margin: 20px;"></div>
+          <el-form :label-position="right" label-width="80px">
+            <el-form-item label="项目名称">
+              <p class="rider-name">外卖骑手项目</p>
+            </el-form-item>
+            <el-form-item label="人员模板">
+              <el-input v-model="formLabelAlign.region"></el-input>
+            </el-form-item>
+            <el-form-item label="上传数据">
+              <el-input v-model="formLabelAlign.type"></el-input>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+      
     </div>
-    <h2>{{msg}}</h2>
   </div>
 </template>
 
@@ -95,15 +123,124 @@ export default {
   name: 'demo',
   data () {
     return {
-      msg: '你好'
+      msg: '你好',
+      ruleForm: {
+        region: '',
+        province: '',
+        city: '',
+        time: '',
+        name: '',
+        describe: '',
+        site: '',
+        
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      },
+      rules: {
+        region: [
+          { required: true, message: '请选择任务类型', trigger: 'change' }
+        ],
+        province: [
+          { required: true, message: '请选择省份', trigger: 'change' }
+        ],
+        city: [
+          { required: true, message: '请选择城市', trigger: 'change' }
+        ],
+        time: [
+          { required: true, message: '请选择时间', trigger: 'change' }
+        ],
+        name: [
+          { required: true, message: '请输入项目名称', trigger: 'blur' },
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        ],
+        describe: [
+          { required: true, message: '请输入任务描述', trigger: 'change' }
+        ],
+        site: [
+          { required: true, message: '请输入详细地址', trigger: 'change' }
+        ]
+      },
+      pickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick(picker) {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+            picker.$emit('pick', [start, end]);
+          }
+        }, {
+          text: '最近一个月',
+          onClick(picker) {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+            picker.$emit('pick', [start, end]);
+          }
+        }, {
+          text: '最近三个月',
+          onClick(picker) {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+            picker.$emit('pick', [start, end]);
+          }
+        }]
+      },
+      cities: [{
+        value: 'Beijing',
+        label: '北京'
+      }, {
+        value: 'Shanghai',
+        label: '上海'
+      }, {
+        value: 'Nanjing',
+        label: '南京'
+      }, {
+        value: 'Chengdu',
+        label: '成都'
+      }, {
+        value: 'Shenzhen',
+        label: '深圳'
+      }, {
+        value: 'Guangzhou',
+        label: '广州'
+      }],
+      value: '',
+      plan: 2,
+      labelPosition: 'right',
+      formLabelAlign: {
+        name: '',
+        region: '',
+        type: ''
+      }
     }
+  },
+  methods:{
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
   }
 }
 </script>
 
 <style>
 .order{
-  height: 300px;
+  /* height: 300px; */
   background: #fff;
   margin-top: 15px;
   border-radius: 5px;
@@ -142,5 +279,26 @@ export default {
 }
 .o-one>div>p:nth-child(2){
   font-size: 12px;
+}
+.from-cont{
+  width: 490px;
+  margin-top: 16px;
+}
+.textArea>textarea{
+  height: 117px;
+}
+.nextBtn{
+  width: 156px;
+  height: 30px;
+  background-color: #6276e6;
+  color: #fff;
+  padding: 0;
+  border-radius: 20px;
+  line-height: 30px;
+}
+.rider-name{
+  font-size: 16px;
+  font-weight: bold;
+  color: #24c56a;
 }
 </style>

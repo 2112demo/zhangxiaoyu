@@ -8,13 +8,11 @@
           class="el-menu-vertical-demo lt-title"
           :class="{twh:isCollapse}"
           @open="handleOpen"
-          @close="handleClose" 
+          @close="handleClose"
           disabled="true"
           :collapse="isCollapse"
           background-color="#cf121a"
-          active-text-color="#fff"
-          collapse-transition="false"
-          >
+          active-text-color="#fff">
           <el-menu-item index="1" class="left-title">
             <i class="el-icon-s-promotion" :class="{fontBig:isCollapse}"></i>
             <span slot="title" >灵活用工服务平台</span>
@@ -27,13 +25,12 @@
               default-active="2"
               class="el-menu-vertical-demo"
               @open="handleOpen"
-              @close="handleClose" 
+              @close="handleClose"
               style="border: none;border-radius: 80px;margin-top: 10px;"
               disabled="true"
               :collapse="isCollapse"
               background-color="#e0dfdf"
-              active-text-color="#162d8d"
-              collapse-transition="false">
+              active-text-color="#162d8d">
               <router-link to="/">
                 <el-menu-item index="1" class="common-item">
                     <i class="el-icon-s-home" style="color: #162d8d;" :class="{fontBig:isCollapse}"></i>
@@ -142,11 +139,11 @@ export default {
     cut () {
       this.isCollapse = !this.isCollapse
     },
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
     }
   }
 }
@@ -174,7 +171,8 @@ body{
 }
 #left{
   /* width: 200px; */
-  height: 100vh;
+  /* height: 100vh; */
+  height: auto;
   background: #fff;
   overflow: hidden;
 }
