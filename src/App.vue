@@ -61,8 +61,10 @@
                       批量新建订单
                   </el-menu-item>
                 </router-link>
-                <el-menu-item index="1-2" class="l-arrows">
-                  <i class="el-icon-arrow-right"></i>项目列表</el-menu-item>
+                <router-link to="/demoList">
+                  <el-menu-item index="1-2" class="l-arrows">
+                    <i class="el-icon-arrow-right"></i>项目列表</el-menu-item>
+                </router-link>
                 <el-menu-item index="1-3" class="l-arrows">
                   <i class="el-icon-arrow-right"></i>任务派单</el-menu-item>
                 <el-menu-item index="1-4" class="l-arrows">
@@ -268,5 +270,9 @@ body{
 a{
   color: #7c7f81;
   text-decoration: none;
+}
+.head-icon{
+  color: #2d4196;
+  font-size: 15px;
 }
 </style>

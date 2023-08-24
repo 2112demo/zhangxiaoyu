@@ -3,7 +3,7 @@
     <div class="title">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-s-claim"></i>
+          <i class="el-icon-s-claim head-icon"></i>
         </el-breadcrumb-item>
         <el-breadcrumb-item>项目任务</el-breadcrumb-item>
         <el-breadcrumb-item>批量新建订单</el-breadcrumb-item>
@@ -20,7 +20,7 @@
         </div>
         <i class="el-icon-more"></i>
         <div class="o-one">
-          <p>01</p>
+          <p>02</p>
           <div>
             <p>项目信息</p>
             <p>项目名称、类型、预算等</p>
@@ -28,7 +28,7 @@
         </div>
         <i class="el-icon-more"></i>
         <div class="o-one">
-          <p>01</p>
+          <p>03</p>
           <div>
             <p>项目信息</p>
             <p>项目名称、类型、预算等</p>
@@ -105,12 +105,21 @@
               <p class="rider-name">外卖骑手项目</p>
             </el-form-item>
             <el-form-item label="人员模板">
-              <el-input v-model="formLabelAlign.region"></el-input>
+              <p class="file-p"><i class="el-icon-document"></i>下载模板</p>
             </el-form-item>
             <el-form-item label="上传数据">
-              <el-input v-model="formLabelAlign.type"></el-input>
+              <div class="uploading-box">
+                <img src="../../img/money.png" alt="">
+                <div class="u-text">
+                  <p>点击上传，或将填好数据的Exc文件拖拽到虚线框内</p>
+                  <p>仅支持上传xls .xlsx扩展名的Exce文件</p>
+                  <p>文件中不可有外部引用的数据，不能含有公式</p>
+                  <p>上传数据前请再次核对是否存在人员信息重复，溢免造成资金损失！</p>
+                </div>
+              </div>
             </el-form-item>
           </el-form>
+          <button class="information">&lt;项目信息</button>
         </div>
       </div>
       
@@ -211,7 +220,7 @@ export default {
         label: '广州'
       }],
       value: '',
-      plan: 2,
+      plan: 1,
       labelPosition: 'right',
       formLabelAlign: {
         name: '',
@@ -246,6 +255,7 @@ export default {
   border-radius: 5px;
   padding: 15px;
   box-sizing: border-box;
+  padding-bottom: 80px;
 }
 .o-flow{
   padding: 10px 68px;
@@ -301,4 +311,49 @@ export default {
   font-weight: bold;
   color: #24c56a;
 }
+.file-p{
+  width: 130px;
+  height: 28px;
+  border: 1px solid #62d2c1;
+  border-radius: 15px;
+  line-height: 28px;
+  text-align: center;
+  color: #007f0a;
+  font-size: 14px;
+  box-shadow: 1px 1px 5px;
+}
+.uploading-box{
+  width: 590px;
+  height: 200px;
+  border: 2px dashed #6275e6;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0 38px;
+}
+.uploading-box>img{
+  margin-top: 30px;
+}
+.uploading-box>.u-text{
+  height: 100px;
+  margin-top: -20px;
+}
+.u-text>p{
+  height: 30px;
+  margin-left: 20px;
+  line-height: 30px;
+}
+.u-text>p:nth-child(4){
+  color: red;
+}
+.information{
+  width: 110px;
+  height: 28px;
+  border: 1px solid #8999ec;
+  border-radius: 15px;
+  background: #fff;
+  margin: 15px 80px 0;
+  color: #8999ec;
+}
+
 </style>

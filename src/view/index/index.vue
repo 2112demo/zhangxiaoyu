@@ -3,7 +3,7 @@
     <div class="title">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-s-home"></i>
+          <i class="el-icon-s-home head-icon"></i>
         </el-breadcrumb-item>
         <el-breadcrumb-item><a href="">活动详情</a></el-breadcrumb-item>
       </el-breadcrumb>
