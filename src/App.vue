@@ -65,10 +65,14 @@
                   <el-menu-item index="1-2" class="l-arrows">
                     <i class="el-icon-arrow-right"></i>项目列表</el-menu-item>
                 </router-link>
-                <el-menu-item index="1-3" class="l-arrows">
-                  <i class="el-icon-arrow-right"></i>任务派单</el-menu-item>
-                <el-menu-item index="1-4" class="l-arrows">
-                  <i class="el-icon-arrow-right"></i>订单派单</el-menu-item>
+                <router-link to="/orders">
+                  <el-menu-item index="1-3" class="l-arrows">
+                    <i class="el-icon-arrow-right"></i>任务派单</el-menu-item>
+                </router-link>
+                <router-link to="/dispatch">
+                  <el-menu-item index="1-4" class="l-arrows">
+                    <i class="el-icon-arrow-right"></i>订单派单</el-menu-item>
+                </router-link>
               </el-submenu>
               <el-submenu index="2" style="width:170px;">
                 <template slot="title">
@@ -173,8 +177,8 @@ body{
 }
 #left{
   /* width: 200px; */
-  /* height: 100vh; */
-  height: auto;
+  height: 100vh;
+  /* height: auto; */
   background: #fff;
   overflow: hidden;
 }
@@ -256,6 +260,9 @@ body{
 .r-cont{
   padding: 15px 10px;
   box-sizing: border-box;
+  width: 100%;
+  height: 92vh;
+  overflow: scroll;
 }
 /* 子项目左侧箭头 */
 .l-arrows{

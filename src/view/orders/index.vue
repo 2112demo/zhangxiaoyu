@@ -6,15 +6,13 @@
           <i class="el-icon-s-claim head-icon"></i>
         </el-breadcrumb-item>
         <el-breadcrumb-item>项目任务</el-breadcrumb-item>
-        <el-breadcrumb-item>批量新建订单</el-breadcrumb-item>
+        <el-breadcrumb-item>任务派单</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div id="cont-list">
       <div class="title-group">
         <div class="t-g-left">
-           <el-button round class="t-btn">全部项目</el-button>
-           <el-button round class="t-btn">批量导入</el-button>
-           <el-button round class="t-btn">已作废项目</el-button>
+           <el-button round class="t-btn">全部任务</el-button>
         </div>
         <div class="t-g-right">
           <el-input placeholder="项目名称关键词搜索" class="search" v-model="search"></el-input>
@@ -41,62 +39,45 @@
           style="width: 1313px">
           <el-table-column
             prop="id"
-            label="项目编号"
-            width="180">
+            label="订单/任务编号"
+            width="220">
           </el-table-column>
           <el-table-column
             prop="name"
             label="项目名称"
-            width="170">
-          </el-table-column>
-          <el-table-column
-            prop="task"
-            label="任务"
-            width="60">
-          </el-table-column>
-          <el-table-column
-            prop="orderForm"
-            label="订单"
-            width="78">
-          </el-table-column>
-          <el-table-column
-            prop="start"
-            label="状态"
-            width="125">
+            width="350">
           </el-table-column>
           <el-table-column
             prop="price"
-            label="项目金额"
-            width="99">
+            label="任务金额"
+            width="95">
           </el-table-column>
           <el-table-column
-            prop="tax"
-            label="税费服务费"
-            width="120">
+            prop="person"
+            label="接单人"
+            class="color-b"
+            width="75">
+          </el-table-column>
+          <el-table-column
+            prop="identity"
+            label="身份证号"
+            width="185">
+          </el-table-column>
+          <el-table-column
+            prop="start"
+            label="接单状态"
+            width="95">
           </el-table-column>
           <el-table-column
             prop="time"
-            label="项目时间"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="city"
-            label="省份城市"
-            width="122">
-          </el-table-column>
-          <el-table-column
-            prop="establish"
             label="创建时间"
             width="180">
           </el-table-column>
           <el-table-column
-            fixed="right"
             label="操作"
-            label-class-name="operator"
-            width="150">
+            width="auto">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row)" type="text" size="small" style="color: rgb(0 226 150);font-weight: bold;">提交审核</el-button>
-              <el-button type="text" size="small" style="color: #eb0000;font-weight: bold;">作废</el-button>
+              <el-button type="text" size="small" style="color: #2d4196;font-weight: bold;">订单详情</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -107,7 +88,7 @@
 
 <script>
 export default {
-  name: 'demoList',
+  name: 'orders',
   data () {
     return {
       msg: '你好',
@@ -117,103 +98,71 @@ export default {
       tableData: [{
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '411322200402212451',
+        start: '已接单',
+        time: '2021-08-25~2021-08-26'
       }, {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '邓迎硕',
+        identity: '411322200402212451',
+        start: '已接单',
+        time: '2021-08-25~2021-08-26'
       }, {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '阮桑',
+        identity: '411322200402212451',
+        start: '已接单',
+        time: '2021-08-25~2021-08-26'
       }, {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '411322200402212451',
+        start: '已接单',
+        time: '2021-08-25~2021-08-26'
       },
       {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '411322200402212451',
+        start: '已接单',
+        time: '2021-08-25~2021-08-26'
       },
       {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '411322200402212451',
+        start: '已接单',
+        time: '2021-08-25~2021-08-26'
       },
       {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '411322200402212451',
+        start: '已接单',
+        time: '2021-08-25~2021-08-26'
       },
       {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '411322200402212451',
+        start: '已接单',
+        time: '2021-08-25~2021-08-26'
       }]
     }
   },
@@ -230,6 +179,7 @@ export default {
   background-color: #fff;
   border-radius: 5px;
   margin-top: 15px;
+  padding-bottom: 30px;
 }
 .title-group{
   height: 50px;
@@ -292,33 +242,8 @@ export default {
 .tabel-t tbody>tr>td{
   border-bottom: 1px solid #EBEEF5;
 }
-.tabel-t thead>tr>th:last-child{
-  background-color:#eaedf4;
-}
-.tabel-t tbody>tr>td:nth-child(6){
-  color:#33c984;
-}
-.operator{
-  color: #000;
-}
-.tabel-t{
-  overflow-x: scroll;
-}
-/* 清除滚动条样式 */
-.tabel-t::-webkit-scrollbar {
-  display: none;
-  /* width: 0 !important;
-  height: 0 !important; */
-}
-.tabel-t::-webkit-scrollbar-track {
-  background: none;
-}
-
-.tabel-t::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.tabel-t::-webkit-scrollbar-thumb:hover {
-  background-color: transparent;
+.tabel-t tbody>tr>td:nth-child(4),.tabel-t tbody>tr>td:nth-child(2){
+  color: #2d4196;
+  text-decoration: underline;
 }
 </style>

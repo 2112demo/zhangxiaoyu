@@ -6,15 +6,14 @@
           <i class="el-icon-s-claim head-icon"></i>
         </el-breadcrumb-item>
         <el-breadcrumb-item>项目任务</el-breadcrumb-item>
-        <el-breadcrumb-item>批量新建订单</el-breadcrumb-item>
+        <el-breadcrumb-item>订单派单</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div id="cont-list">
       <div class="title-group">
         <div class="t-g-left">
-           <el-button round class="t-btn">全部项目</el-button>
-           <el-button round class="t-btn">批量导入</el-button>
-           <el-button round class="t-btn">已作废项目</el-button>
+           <el-button round class="t-btn">全部订单</el-button>
+           <el-button round class="t-btn">订单派单</el-button>
         </div>
         <div class="t-g-right">
           <el-input placeholder="项目名称关键词搜索" class="search" v-model="search"></el-input>
@@ -36,67 +35,67 @@
       <template>
         <el-table
           :data="tableData"
-          stripe="false"
           class="tabel-t"
+          stripe="false"
+          :default-sort = "{prop: 'date', order: 'descending'}"
+          :row-class-name="tableRowClassName"
           style="width: 1313px">
           <el-table-column
             prop="id"
-            label="项目编号"
-            width="180">
+            label="订单/任务编号"
+            width="220">
           </el-table-column>
           <el-table-column
             prop="name"
             label="项目名称"
-            width="170">
-          </el-table-column>
-          <el-table-column
-            prop="task"
-            label="任务"
-            width="60">
-          </el-table-column>
-          <el-table-column
-            prop="orderForm"
-            label="订单"
-            width="78">
-          </el-table-column>
-          <el-table-column
-            prop="start"
-            label="状态"
-            width="125">
+            width="200">
           </el-table-column>
           <el-table-column
             prop="price"
-            label="项目金额"
-            width="99">
+            label="任务金额"
+            sortable
+            width="100">
           </el-table-column>
           <el-table-column
-            prop="tax"
-            label="税费服务费"
-            width="120">
+            prop="person"
+            label="接单人"
+            sortable
+            class="color-b"
+            width="90">
+          </el-table-column>
+          <el-table-column
+            prop="identity"
+            label="银行卡号"
+            width="170">
+          </el-table-column>
+          <el-table-column
+            prop="start"
+            label="银行名称"
+            width="126">
           </el-table-column>
           <el-table-column
             prop="time"
-            label="项目时间"
-            width="180">
+            label="状态"
+            sortable
+            width="133">
           </el-table-column>
           <el-table-column
-            prop="city"
-            label="省份城市"
-            width="122">
+            prop="rate"
+            label="费率"
+            width="76">
           </el-table-column>
           <el-table-column
-            prop="establish"
-            label="创建时间"
-            width="180">
+            prop="zhRate"
+            label="综合税费"
+            width="80">
           </el-table-column>
           <el-table-column
-            fixed="right"
             label="操作"
             label-class-name="operator"
-            width="150">
+            width="auto">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row)" type="text" size="small" style="color: rgb(0 226 150);font-weight: bold;">提交审核</el-button>
-              <el-button type="text" size="small" style="color: #eb0000;font-weight: bold;">作废</el-button>
+              <el-button type="text" size="small" class="l-bank">详情</el-button>
+              <el-button type="text" size="small" class="bank">银行回单</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -107,7 +106,7 @@
 
 <script>
 export default {
-  name: 'demoList',
+  name: 'dispatch',
   data () {
     return {
       msg: '你好',
@@ -117,109 +116,109 @@ export default {
       tableData: [{
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '623061010010909533',
+        start: '杭州银行',
+        time: '打款成功',
+        rate: '5.00%',
+        zhRate: '0.00',
+        bankStart: true
       }, {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '623061010010909533',
+        start: '支付宝',
+        time: '打款成功',
+        rate: '',
+        zhRate: '0.00'
       }, {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '623061010010909533',
+        start: '招商银行',
+        time: '打款成功',
+        rate: '',
+        zhRate: '0.00'
       }, {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '623061010010909533',
+        start: '杭州银行',
+        time: '打款成功',
+        rate: '',
+        zhRate: '0.00'
       },
       {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '623061010010909533',
+        start: '杭州银行',
+        time: '打款成功',
+        rate: '',
+        zhRate: '0.00'
       },
       {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '623061010010909533',
+        start: '杭州银行',
+        time: '已接单',
+        rate: '',
+        zhRate: '0.00'
       },
       {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '623061010010909533',
+        start: '杭州银行',
+        time: '已接单',
+        rate: '',
+        zhRate: '0.00'
       },
       {
         id: 'P202108250304196531',
         name: '外卖骑手项目',
-        task: 2,
-        province: '2',
-        orderForm: '报审',
-        start: '待报审',
         price: '0.20',
-        tax: '0.00',
-        time: '2021-08-25~2021-08-26',
-        city: '河北省-邢台市',
-        establish: '2021-08-25~2021-08-26'
+        person: '张晓宇',
+        identity: '623061010010909533',
+        start: '杭州银行',
+        time: '已接单',
+        rate: '',
+        zhRate: '0.00'
       }]
     }
   },
   methods: {
     handleClick (row) {
       console.log(row)
+    },
+    tableRowClassName ({ row, rowIndex }) {
+      // let str = ''
+      // const evenIndexes = this.tableData.map((item, index) => {
+      //   if (item.time == '已作废') {
+      //     return index;
+      //   }
+      // }).filter(index => index !== undefined);
+      // console.log(evenIndexes);
+      if (rowIndex === 1 || rowIndex === 2 || rowIndex === 0 || rowIndex === 3 || rowIndex === 4) {
+        return 'warning-row'
+      } else if (rowIndex === 3) {
+        return 'success-row'
+      }
+      return ''
     }
   }
 }
@@ -230,6 +229,7 @@ export default {
   background-color: #fff;
   border-radius: 5px;
   margin-top: 15px;
+  padding-bottom: 30px;
 }
 .title-group{
   height: 50px;
@@ -292,33 +292,37 @@ export default {
 .tabel-t tbody>tr>td{
   border-bottom: 1px solid #EBEEF5;
 }
-.tabel-t thead>tr>th:last-child{
-  background-color:#eaedf4;
+.tabel-t tbody>tr>td:nth-child(4),.tabel-t tbody>tr>td:nth-child(2){
+  color: #2d4196;
+  text-decoration: underline;
 }
-.tabel-t tbody>tr>td:nth-child(6){
-  color:#33c984;
+.l-bank{
+  float: left;
+  color: #2d4196;
+  font-weight: bold;
 }
-.operator{
-  color: #000;
+.bank{
+  float: left;
+  color: #22a7d3 !important;
+  border-left: 2px solid #ccc !important;
+  padding: 0 !important;
+  padding-left: 8px !important;
+  height: 20px !important;
+  font-weight: bold !important;
+  display: none !important;
+  margin-top: 6px;
 }
-.tabel-t{
-  overflow-x: scroll;
+.tabel-t tbody>tr>td:last-child .cell button:last-child{
+  /* visibility: visible !important; */
+  /* overflow: inherit !important; */
 }
-/* 清除滚动条样式 */
-.tabel-t::-webkit-scrollbar {
-  display: none;
-  /* width: 0 !important;
-  height: 0 !important; */
+.el-table .warning-row td:last-child .cell button:last-child{
+  display: block !important;
 }
-.tabel-t::-webkit-scrollbar-track {
-  background: none;
+.el-table .warning-row td:nth-child(7)>.cell{
+  color: #33c984 !important;
 }
-
-.tabel-t::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.tabel-t::-webkit-scrollbar-thumb:hover {
-  background-color: transparent;
+.el-table .success-row {
+  background: #f0f9eb;
 }
 </style>

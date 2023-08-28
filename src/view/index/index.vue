@@ -151,6 +151,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
+  min-width: 870px;
 }
 .cont>div{
   width: 32.8%;
